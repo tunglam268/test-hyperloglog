@@ -15,20 +15,32 @@ Dự án này xử lý log dữ liệu lớn (~1 triệu dòng) từ các file J
 ```bash
 npm install
 ```
-> Yêu cầu Redis đã chạy local (`localhost:6379`)
-> 
-> Hoặc chạy docker với file docker-compose.yml
+### Yêu cầu Redis
+
+Redis cần được chạy ở local tại `localhost:6379`.
+
+Bạn có thể chạy Redis bằng Docker với file `docker-compose.yml`:
+
 ```bash
 docker-compose up -d
 ```
 
----
+### Tạo dữ liệu test
 
-### 2. Chạy `main.js`
+Chạy lệnh sau để tạo dữ liệu test:
+
+```bash
+node generateData.js
+```
+
+### Hiển thị kết quả ở terminal
+
+Chạy lệnh sau để hiển thị kết quả ở terminal:
 
 ```bash
 node main.js
 ```
+
 
 File `main.js` là nơi gọi các hàm xử lý chính. Bạn có thể bật/tắt từng hàm:
 
@@ -41,7 +53,7 @@ const redis = new Redis();
 
 async function main() {
     await processNRU(redis);
-    await processNRD(redis);
+    await processNRD(redis);generateData
     await processRR1(redis);
     await redis.disconnect();
 }
@@ -95,7 +107,7 @@ Dữ liệu nằm trong file `log_login.json`, định dạng:
 
 ---
 
-## 📦 Cấu trúc đề xuất
+## 📦 Cấu trúc
 
 ```
 project/

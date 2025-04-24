@@ -8,6 +8,9 @@ const logFilePath = path.join(__dirname, 'log_login.json');
 
 // Hàm xử lý dữ liệu RR1 từ file JSON
 async function processRR1(redis) {
+    if (!fs.existsSync(logFilePath)) {
+        throw new Error(`Không tìm thấy file . Hãy chạy lệnh node generateData.js để tạo dữ liệu`);
+    }
     const data = JSON.parse(fs.readFileSync(logFilePath, 'utf-8'));
 
     // Giai đoạn 1: Lưu các user_id vào Redis theo từng ngày

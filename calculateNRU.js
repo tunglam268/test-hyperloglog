@@ -7,6 +7,9 @@ const logFilePath = path.join(__dirname, 'log_login.json');
 
 // Xử lý file log_login.json
 async function processNRU(redis) {
+    if (!fs.existsSync(logFilePath)) {
+        throw new Error(`Không tìm thấy file. Hãy chạy lệnh node generateData.js để tạo dữ liệu`);
+    }
     const data = JSON.parse(fs.readFileSync(logFilePath, 'utf-8'));
     for (const record of data) {
         if (!record["user_id"] || !record["timestamp"]) continue;
