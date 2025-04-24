@@ -53,7 +53,7 @@ const redis = new Redis();
 
 async function main() {
     await processNRU(redis);
-    await processNRD(redis);generateData
+    await processNRD(redis);
     await processRR1(redis);
     await redis.disconnect();
 }
